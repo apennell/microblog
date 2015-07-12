@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Clean Blog</title>
+  <title>Syntactic Sugar</title>
 
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -80,27 +80,31 @@
             <hr class="small">
             <span class="subheading">sweeten up your code.</span>
 
-            <!-- modal trigger button -->
-            <button type="button" class="btn btn-heading" data-toggle="modal" data-target="#myModal">New Post</button>
+            <!-- modal trigger button for new post -->
+            <button type="button" class="btn btn-heading" data-toggle="modal" data-target="#myModal">New Entry</button>
 
-            <!-- modal -->
+            <!-- modal for new post form -->
             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                    <h4 class="modal-title" id="myModalLabel">New Blog Entry</h4>
                   </div>
                   <div class="modal-body">
-                    ...
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <form class-"form-inline" id="new-post">
+                      <input type="text" class="form-control" id="new-title" placeholder="Title" autofocus>
+                      <input type="text" class="form-control" id="new-heading" placeholder="Heading">
+                      <input type="text" class="form-control" id="new-author" placeholder="Author">
+                      <textarea class="form-control" id="new-content" placeholder="Content" rows="15"></textarea>
+                      <hr>
+                      <input type="submit" class="btn btn-primary" value="Add post">
+                    </form>
                   </div>
                 </div>
               </div>
-            </div>
+            </div> <!-- /modal for new post form -->
+
           </div>
         </div>
       </div>
@@ -110,16 +114,14 @@
   <!-- Page Content -->
   <div class="container">
     <div class="row">
-      <div class="col-md-8">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         
-        <!-- new post form -->
-
+        <!-- list of posts -->
+        <ul class="list-group" id="post-list"></ul>
 
       </div>
     </div>
   </div>
-  
-
 
 <!--   <div class="container">
     <div class="row">
@@ -224,8 +226,26 @@
   <!-- Latest compiled and minified JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
+  <!-- underscore -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+
   <!-- Custom Theme JavaScript -->
   <script src="scripts.js "></script>
+
+  <!-- underscore post display template -->
+  <script type="text/template" id="post-template">
+  <li class="list-group-item">
+    <div class="post-preview">
+      <h2 class="post-title">
+        <%= title %>
+      </h2>
+      <h3 class="post-heading">
+        <%= heading %>
+      </h3>
+      <p class="post-meta">Posted by <a href="#"><%= author %></a></p>
+    </div>
+  </li>
+  </script>
 
 </body>
 

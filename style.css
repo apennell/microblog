@@ -223,7 +223,7 @@ hr.small {
   margin-top: 30px;
   margin-bottom: 10px;
 }
-.post-preview > a > .post-subtitle {
+.post-preview > a > .post-heading {
   margin: 0;
   font-weight: 300;
   margin-bottom: 10px;
@@ -395,4 +395,12 @@ body {
 
 .btn-heading {
   margin-top: 40px;
+}
+
+.modal-title {
+  color: black;
+}
+
+.form-control {
+  margin-bottom: 10px;
 }
