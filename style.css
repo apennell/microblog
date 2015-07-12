@@ -23,7 +23,7 @@ h4,
 h5,
 h6 {
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-weight: 600;
+  font-weight: 700;
 }
 a {
   color: #404040;
@@ -223,7 +223,7 @@ hr.small {
   margin-top: 30px;
   margin-bottom: 10px;
 }
-.post-preview > a > .post-heading {
+.post-preview > a > .post-subtitle {
   margin: 0;
   font-weight: 300;
   margin-bottom: 10px;

@@ -30,4 +30,32 @@ $(function() {
     $postsList.append($post);
   });
 
-})
+  // submit new post form
+  $newPost.on('submit', function(event) {
+    event.preventDefault();
+
+    // create new post object from form data
+    var postTitle = $('#new-title').val();
+    var postHeading = $('#new-subtitle').val();
+    var postAuthor = $('#new-author').val();
+    var postContent = $('#new-content').val();
+    var postData = {
+      title: postTitle,
+      heading: postHeading,
+      author: postAuthor,
+      content: postContent
+    };
+
+    // store new post in posts array
+    posts.push(postData);
+    var index = posts.indexOf(postData);
+
+    // append new post to $postsList
+    var $post = $(postsTemplate(postData));
+    $post.attr('data-index', index);
+    $postsList.append($post);
+
+    $('#myModal').modal('hide');
+  });
+
+});
