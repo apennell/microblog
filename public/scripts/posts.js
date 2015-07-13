@@ -1,61 +1,112 @@
 $(function() {
 
-  // post template
-  var postsTemplate = _.template($('#post-template').html());
+  var postsController = {
 
-  // list of posts
-  var $postsList = $('#post-list');
+    // post template
+    _.template($('#post-template').html()),
 
-  // form to create new post
-  var $newPost= $('#new-post');
+    all: function() {
+      $.get('/api/posts', function(data) {
+        var allPosts = data;
 
-  var posts = [
-    {
-      title: "Underscore Templating with a Cherry on Top",
-      heading: "The best tips and tricks for using Underscore.js",
-      author: "Annie Pennell",
-      content: "Butcher Pinterest hella Helvetica, direct trade messenger bag street art plaid you probably haven't heard of them pickled irony roof party mumblecore salvia next level. Salvia tote bag PBR shabby chic Vice. Taxidermy Thundercats literally craft beer, lo-fi mlkshk lumbersexual art party biodiesel chillwave PBR Etsy. XOXO hoodie listicle umami, PBR next level try-hard High Life semiotics tofu heirloom pug Echo Park. Art party hashtag direct trade, fixie Shoreditch selfies chambray before they sold out bitters Banksy. Thundercats chillwave viral, aesthetic gastropub roof party polaroid iPhone street art flannel. Chia you probably haven't heard of them heirloom tofu, drinking vinegar yr brunch health goth."
+        // iterate through allPosts
+        _.each(allPosts, function(post) {
+          // put each post object in template and add to view
+          var $postHtml = $(postsController.template(post));
+          $('#post-list').append($postHTML);
+        });
+        // add event-handlers to posts for updating/deleting
+        postsController.addEventHandlers();
+      });
     },
-    {
-      title: "Artisinal Node",
-      heading: "Make the most out of Node.js",
-      author: "Annie Pennell",
-      content: "Marfa tattooed bicycle rights meh, Portland umami before they sold out organic cray. Messenger bag tilde crucifix, PBR cray semiotics selfies health goth bespoke 3 wolf moon art party. Pour-over before they sold out 90's disrupt, health goth heirloom hoodie keytar plaid 3 wolf moon cred selfies Truffaut freegan Brooklyn. You probably haven't heard of them polaroid food truck, try-hard single-origin coffee messenger bag cliche Brooklyn ethical 3 wolf moon PBR art party Williamsburg. Seitan freegan Schlitz, before they sold out direct trade deep v irony mustache Godard meh mumblecore. Before they sold out Etsy irony skateboard. Bespoke swag kale chips lumbersexual 8-bit, 90's Banksy listicle mixtape butcher."
+
+    create: function(postTitle, postHeading, postAuthor, postContent) {
+      var postData = {
+        title: postTitle,
+        heading: postHeading,
+        author: postAuthor,
+        content: postContent
+      };
+      $.post('/api/posts', postData, function(data) {
+        // put post object in template and add to view
+        var $postHtml = $(postsController.template(data));
+        $('#post-list').append($postHtml);
+      });
+    },
+
+    update: function(postId, updatedTitle, updatedHeading, updatedAuthor, updatedContent) {
+      // send PUT request to server to update post
+      $.ajax({
+        type: 'PUT',
+        url: '/api/posts/' + postId,
+        data: {
+          title: updatedTitle,
+          heading: updatedHeading,
+          author: updatedAuthor,
+          content: updatedContent
+        },
+        success: function(data) {
+          // put post object in template and add update to view
+          var $postHtml = $(postsController.template(data));
+          $('post' + postId).replaceWith($postHtml);
+        }
+      });
+    },
+
+    delete: function(postId) {
+      // send DELETE request to server to delete post
+      $.ajax({
+        type: 'DELETE',
+        url: '/api/posts/' + postId,
+        success: function(data) {
+          // remove deleted post from the view
+          $('#post-' + postId).remove();
+        }
+      });
+    },
+
+    addEventHandlers: function() {
+      $('#post-list')
+        // for update submit event on update post form
+        .on('submit', 'update-post', function(event) {
+          event.preventDefault();
+          var postId = $(this).closest('.post').attr('data-id');
+          var updatedTitle = $(this).find('updated-title').val;
+          var updatedHeading = $(this).find('updated-heading').val;
+          var updatedAuthor = $(this).find('updated-author').val;
+          var updatedContent= $(this).find('updated-content').val;
+        })
+        // for delete click even on delete-post button
+        .on('click', '.delete-post', function(event) {
+          event.preventDefault();
+          var postId = $(this).closest('.post').attr('data-id');
+          postsController.delete(postId);
+        });
+    },
+
+    setupView: function() {
+      // add existing posts to view
+      postsController.all();
+
+      // add event handler to new post form
+      $('#new-post').on('submit', function(event) {
+        event.preventDefault();
+
+        // create new post variables from form data
+        var postTitle = $('#new-title').val();
+        var postHeading = $('#new-subtitle').val();
+        var postAuthor = $('#new-author').val();
+        var postContent = $('#new-content').val();
+        // create new post instance with form data
+        postsController.create(postTitle, postHeading, postAuthor, postContent);
+
+        // reset form
+        $(this)[0].reset();
+        $('#new-title').focus();
+      });
     }
-  ];
+  };
 
-  _.each(posts, function(post, index) {
-    var $post = $(postsTemplate(post));
-    $post.attr('data-index', index);
-    $postsList.append($post);
-  });
-
-  // submit new post form
-  $newPost.on('submit', function(event) {
-    event.preventDefault();
-
-    // create new post object from form data
-    var postTitle = $('#new-title').val();
-    var postHeading = $('#new-subtitle').val();
-    var postAuthor = $('#new-author').val();
-    var postContent = $('#new-content').val();
-    var postData = {
-      title: postTitle,
-      heading: postHeading,
-      author: postAuthor,
-      content: postContent
-    };
-
-    // store new post in posts array
-    posts.push(postData);
-    var index = posts.indexOf(postData);
-
-    // append new post to $postsList
-    var $post = $(postsTemplate(postData));
-    $post.attr('data-index', index);
-    $postsList.append($post);
-
-    $('#myModal').modal('hide');
-  });
+  postsController.setupView();
 
 });
