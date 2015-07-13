@@ -113,64 +113,6 @@
     </div>
   </div>
 
-<!--   <div class="container">
-    <div class="row">
-      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <div class="post-preview">
-            <a href="post.html">
-                <h2 class="post-title">
-                    Man must explore, and this is exploration at its greatest
-                </h2>
-                <h3 class="post-subtitle">
-                    Problems look mighty small from 150 miles up
-                </h3>
-            </a>
-            <p class="post-meta">Posted by <a href="#">Start Bootstrap</a> on September 24, 2014</p>
-        </div>
-        <hr>
-        <div class="post-preview">
-            <a href="post.html">
-                <h2 class="post-title">
-                    I believe every human has a finite number of heartbeats. I don't intend to waste any of mine.
-                </h2>
-            </a>
-            <p class="post-meta">Posted by <a href="#">Start Bootstrap</a> on September 18, 2014</p>
-        </div>
-        <hr>
-        <div class="post-preview">
-          <a href="post.html">
-            <h2 class="post-title">
-              Science has not yet mastered prophecy
-            </h2>
-            <h3 class="post-subtitle">
-              We predict too much for the next year and yet far too little for the next ten.
-            </h3>
-          </a>
-          <p class="post-meta">Posted by <a href="#">Start Bootstrap</a> on August 24, 2014</p>
-        </div>
-        <hr>
-        <div class="post-preview">
-          <a href="post.html">
-            <h2 class="post-title">
-              Failure is not an option
-            </h2>
-            <h3 class="post-subtitle">
-              Many say exploration is part of our destiny, but it’s actually our duty to future generations.
-            </h3>
-          </a>
-          <p class="post-meta">Posted by <a href="#">Start Bootstrap</a> on July 8, 2014</p>
-        </div>
-        <hr> -->
-        <!-- Pager -->
-<!--         <ul class="pager">
-          <li class="next">
-            <a href="#">Older Posts &rarr;</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div> -->
-
   <hr>
 
   <!-- Footer -->
@@ -209,6 +151,7 @@
       </div>
     </div>
   </footer>
+  
 
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -237,6 +180,36 @@
       <p>
         <%= content %>
       </p>
+      <!-- delete button -->
+      <button class="close right-side delete-post" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+
+      <!-- modal trigger button for update post form -->
+      <button type="button" class="btn btn-heading" data-toggle="modal" data-target="#updateModal">Edit Post</button>
+
+      <!-- modal for update post form -->
+      <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">Edit Blog Entry</h4>
+            </div>
+            <div class="modal-body">
+              <form class-"form-inline update-post">
+                <input type="text" class="form-control updated-title" value="<%= title %>" placeholder="Title" autofocus>
+                <input type="text" class="form-control updated-heading" value="<%= heading %>" placeholder="Heading">
+                <input type="text" class="form-control updated-author" value="<%= author %>" placeholder="Author">
+                <textarea class="form-control updated-content" value="<%= content %>" placeholder="Edit content" rows="15"></textarea>
+                <hr>
+                <input type="submit" class="btn btn-primary" value="Update post">
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>  
+      
     </div>
   </li>
   </script>

@@ -76,7 +76,9 @@ $(function() {
           var updatedHeading = $(this).find('updated-heading').val;
           var updatedAuthor = $(this).find('updated-author').val;
           var updatedContent= $(this).find('updated-content').val;
+          postsController.update(postId, updatedTitle, updatedHeading, updatedAuthor, updatedContent);
         })
+        
         // for delete click even on delete-post button
         .on('click', '.delete-post', function(event) {
           event.preventDefault();

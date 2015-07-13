@@ -1,14 +1,19 @@
 // require express framework and additional modules
 var express = require('express'),
     app = express(),
-    bodyParser = require('body-parser');
-
-// serve js and css files from public folder
-app.use(express.static(__dirname + '/public'));
+    bodyParser = require('body-parser'),
+    var mongoose = require('mongoose');
 
 // tell app to use bodyParser middleware
 app.use(bodyParser.urlencoded({extended: true}));
 
+// serve js and css files from public folder
+app.use(express.static(__dirname + '/public'));
+
+mongoose.connect('mongodb://localhost/microblog');
+ 
+// require post model
+var Post = require('./models/post');
 
 // post seed data
 var posts = [
