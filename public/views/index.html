@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Syntactic Sugar</title>
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+  <!-- Custom CSS -->
+  <link href="styles/style.css" rel="stylesheet">
+
+  <!-- Custom Fonts -->
+  <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  </head>
+
+  <body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header page-scroll">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">Syntactic Sugar</a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <a href="index.html">Home</a>
+          </li>
+          <li>
+            <a href="#">About</a>
+          </li>
+          <li>
+            <a href="#">Contact</a>
+          </li>
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+  </nav>
+
+  <!-- Page Header -->
+  <!-- Set your background image for this header on the line below. -->
+  <header class="intro-header" style="background-image: url('img/shenandoah.jpg')">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+          <div class="site-heading">
+            <h1>syntactic sugar</h1>
+            <hr class="small">
+            <span class="subheading">sweeten up your code.</span>
+
+            <!-- modal trigger button for new post -->
+            <button type="button" class="btn btn-heading" data-toggle="modal" data-target="#myModal">New Entry</button>
+
+            <!-- modal for new post form -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">New Blog Entry</h4>
+                  </div>
+                  <div class="modal-body">
+                    <form class-"form-inline" id="new-post">
+                      <input type="text" class="form-control" id="new-title" placeholder="Title" autofocus>
+                      <input type="text" class="form-control" id="new-subtitle" placeholder="Heading">
+                      <input type="text" class="form-control" id="new-author" placeholder="Author">
+                      <textarea class="form-control" id="new-content" placeholder="Content" rows="15"></textarea>
+                      <hr>
+                      <input type="submit" class="btn btn-primary" value="Add post">
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div> <!-- /modal for new post form -->
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Content -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        
+        <!-- list of posts -->
+        <ul class="list-group" id="post-list"></ul>
+
+      </div>
+    </div>
+  </div>
+
+<!--   <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-preview">
+            <a href="post.html">
+                <h2 class="post-title">
+                    Man must explore, and this is exploration at its greatest
+                </h2>
+                <h3 class="post-subtitle">
+                    Problems look mighty small from 150 miles up
+                </h3>
+            </a>
+            <p class="post-meta">Posted by <a href="#">Start Bootstrap</a> on September 24, 2014</p>
+        </div>
+        <hr>
+        <div class="post-preview">
+            <a href="post.html">
+                <h2 class="post-title">
+                    I believe every human has a finite number of heartbeats. I don't intend to waste any of mine.
+                </h2>
+            </a>
+            <p class="post-meta">Posted by <a href="#">Start Bootstrap</a> on September 18, 2014</p>
+        </div>
+        <hr>
+        <div class="post-preview">
+          <a href="post.html">
+            <h2 class="post-title">
+              Science has not yet mastered prophecy
+            </h2>
+            <h3 class="post-subtitle">
+              We predict too much for the next year and yet far too little for the next ten.
+            </h3>
+          </a>
+          <p class="post-meta">Posted by <a href="#">Start Bootstrap</a> on August 24, 2014</p>
+        </div>
+        <hr>
+        <div class="post-preview">
+          <a href="post.html">
+            <h2 class="post-title">
+              Failure is not an option
+            </h2>
+            <h3 class="post-subtitle">
+              Many say exploration is part of our destiny, but it’s actually our duty to future generations.
+            </h3>
+          </a>
+          <p class="post-meta">Posted by <a href="#">Start Bootstrap</a> on July 8, 2014</p>
+        </div>
+        <hr> -->
+        <!-- Pager -->
+<!--         <ul class="pager">
+          <li class="next">
+            <a href="#">Older Posts &rarr;</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div> -->
+
+  <hr>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+          <ul class="list-inline text-center">
+            <li>
+              <a href="#">
+                <span class="fa-stack fa-lg">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <span class="fa-stack fa-lg">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <span class="fa-stack fa-lg">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+          </ul>
+          <p class="copyright text-muted">Copyright &copy; Annie Pennell 2015</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+  <!-- underscore -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+
+  <!-- Custom Theme JavaScript -->
+  <script src="scripts/posts.js "></script>
+
+  <!-- underscore post display template -->
+  <script type="text/template" id="post-template">
+  <li class="list-group-item">
+    <div class="post-preview">
+      <h2 class="post-title">
+        <%= title %>
+      </h2>
+      <h3 class="post-subtitle">
+        <%= heading %>
+      </h3>
+      <p class="post-meta">Posted by <a href="#"><%= author %></a></p>
+      <hr>
+      <p>
+        <%= content %>
+      </p>
+    </div>
+  </li>
+  </script>
+
+</body>
+
+</html>
