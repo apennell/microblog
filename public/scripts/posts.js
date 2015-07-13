@@ -3,7 +3,7 @@ $(function() {
   var postsController = {
 
     // post template
-    _.template($('#post-template').html()),
+    template: _.template($('#post-template').html()),
 
     all: function() {
       $.get('/api/posts', function(data) {
@@ -13,7 +13,7 @@ $(function() {
         _.each(allPosts, function(post) {
           // put each post object in template and add to view
           var $postHtml = $(postsController.template(post));
-          $('#post-list').append($postHTML);
+          $('#post-list').append($postHtml);
         });
         // add event-handlers to posts for updating/deleting
         postsController.addEventHandlers();
@@ -31,6 +31,7 @@ $(function() {
         // put post object in template and add to view
         var $postHtml = $(postsController.template(data));
         $('#post-list').append($postHtml);
+        $('#myModal').modal('hide');
       });
     },
 
